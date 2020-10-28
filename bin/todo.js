@@ -1,7 +1,13 @@
 #!/usr/bin/env node
-const chalk = require("chalk");
+const utils = require("../src/utils");
+const low = require("lowdb");
+const nt = require("../src/newTodo");
+const FileSync = require('lowdb/adapters/FileSync')
 const args = process.argv;
 const commands = ['new', 'get', 'complete', 'help'];
+
+const adapter = new FileSync('db.json')
+const db = low(adapter)
 
 
 const usage = function () {
@@ -23,24 +29,14 @@ const usage = function () {
     console.log(usageText);
 }
 
+db.defaults({todos:[]}).write()
 
-
-
-function errorLog(error) {
-    const eLog = chalk.red(error);
-    console.log(eLog);
-}
-
-function pleasantMessage(message) {
-    const eMsg = chalk.blue(message);
-    console.log(eMsg);
-}
 
 if (args.length > 3) {
-    errorLog('only one argument can be accepted == 🙄')
+    utils.errorLog('only one argument can be accepted == 🙄')
     usage();
 } else if (args.length < 3) {
-    pleasantMessage('\nplease pass arguments to create your todo == 🤕')
+    utils.pleasantMsg('\nplease pass arguments to create your todo == 🤕')
     usage();
 } else {
     if (commands.indexOf(args[2]) == -1) {
@@ -48,8 +44,10 @@ if (args.length > 3) {
         errorLog('Invalid command passed');
         usage();
     } else {
+
         switch (args[2]) {
             case 'new':
+                nt.newTodo()
                 break;
             case 'help':
                 usage();

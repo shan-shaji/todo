@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "bin/todo.js",
-  
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "lowdb": "^1.0.0",
+    "readline": "^1.3.0"
   },
   "devDependencies": {},
   "scripts": {
