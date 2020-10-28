@@ -7,30 +7,29 @@ const chalk = require("chalk");
 const { errorLog } = require("./utils");
 
 module.exports = {
-    newTodo: () => {
-        const question = chalk.blue(
-            `
+  newTodo: () => {
+    const question = chalk.blue(
+      `
         Type in your todo\n
     
         `
-        );
-        prompt
-            .prompt(question)
-            .then((todo) => {
-                if (todo == "") {
-                    errorLog(`Please enter a todo!`);
-                } else {
-                    db.get("todos")
-                        .push({
-                            title: todo,
-                            complete: false,
-                        })
-                        .write();
-                }
-
+    );
+    prompt
+      .prompt(question)
+      .then((todo) => {
+        if (todo == "") {
+          errorLog(`Please enter a todo!`);
+        } else {
+          db.get("todos")
+            .push({
+              title: todo,
+              complete: false,
             })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
+            .write();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };

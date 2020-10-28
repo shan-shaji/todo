@@ -2,16 +2,27 @@
 const utils = require("../src/utils");
 const low = require("lowdb");
 const nt = require("../src/newTodo");
-const FileSync = require('lowdb/adapters/FileSync')
+const FileSync = require("lowdb/adapters/FileSync");
 const args = process.argv;
-const commands = ['new', 'get', 'complete', 'help'];
+const commands = ["new", "get", "complete", "help"];
 
-const adapter = new FileSync('db.json')
-const db = low(adapter)
-
+const adapter = new FileSync("db.json");
+const db = low(adapter);
 
 const usage = function () {
-    const usageText = `
+  const usageText = `
+    
+    /$$$$$$$$ /$$$$$$  /$$$$$$$   /$$$$$$ 
+    |__  $$__//$$__  $$| $$__  $$ /$$__  $$
+       | $$  | $$  \ $$| $$  \ $$| $$  \ $$
+       | $$  | $$  | $$| $$  | $$| $$  | $$
+       | $$  | $$  | $$| $$  | $$| $$  | $$
+       | $$  | $$  | $$| $$  | $$| $$  | $$
+       | $$  |  $$$$$$/| $$$$$$$/|  $$$$$$/
+       |__/   \______/ |_______/  \______/ 
+                                           
+                                           
+                                           
         todo helps you manage your todo tasks.
         usage:
             todo <command>
@@ -26,41 +37,36 @@ const usage = function () {
 
     `;
 
-    console.log(usageText);
-}
+  console.log(usageText);
+};
 
-db.defaults({todos:[]}).write()
-
+db.defaults({ todos: [] }).write();
 
 if (args.length > 3) {
-    utils.errorLog('only one argument can be accepted == 🙄')
-    usage();
+  usage();
+  utils.errorLog("only one argument can be accepted == 🙄");
 } else if (args.length < 3) {
-    utils.pleasantMsg('\nplease pass arguments to create your todo == 🤕')
-    usage();
+  usage();
+  utils.pleasantMsg("\nplease pass arguments to create your todo == 🤕");
 } else {
-    if (commands.indexOf(args[2]) == -1) {
-       
-        errorLog('Invalid command passed');
+  if (commands.indexOf(args[2]) == -1) {
+    errorLog("Invalid command passed");
+    usage();
+  } else {
+    switch (args[2]) {
+      case "new":
+        nt.newTodo();
+        break;
+      case "help":
         usage();
-    } else {
-
-        switch (args[2]) {
-            case 'new':
-                nt.newTodo()
-                break;
-            case 'help':
-                usage();
-                break;
-            case 'get':
-                break;
-            case 'complete':
-                break
-            default:
-                errorLog('invalid command');
-                usage();
-
-        }
+        break;
+      case "get":
+        break;
+      case "complete":
+        break;
+      default:
+        errorLog("invalid command");
+        usage();
     }
+  }
 }
-
