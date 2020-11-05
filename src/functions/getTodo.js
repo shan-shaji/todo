@@ -9,7 +9,7 @@ module.exports = {
     let index = 1;
     const todos = db.get("todos").value();
     todos.forEach((todo) => {
-      console.log(`${index++}. ${todo.title}`);
+      console.log(`\n${index++}. ${todo.title}`);
       todo.complete == false
         ? errorLog(`status == ${todo.complete}`)
         : pleasantMsg(`status == ${todo.complete}`);

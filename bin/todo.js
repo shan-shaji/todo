@@ -9,6 +9,7 @@ const args = process.argv;
 const commands = ["new", "list", "completed", "help"];
 const adapter = new FileSync("db.json");
 const db = low(adapter);
+const { errorLog, successMsg } = require("../src/utils/messages");
 
 const usage = function () {
   const usageText = `
@@ -51,7 +52,7 @@ if (args.length > 3) {
   utils.pleasantMsg("\nplease pass arguments to create your todo == 🤕");
 } else {
   if (commands.indexOf(args[2]) == -1) {
-    errorLog("Invalid command passed");
+    errorLog("\nInvalid command passed!!");
     usage();
   } else {
     switch (args[2]) {
