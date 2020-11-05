@@ -4,10 +4,9 @@ const low = require("lowdb");
 const nt = require("../src/functions/newTodo");
 const FileSync = require("lowdb/adapters/FileSync");
 const getTodo = require("../src/functions/getTodo");
-const { updateStatus } = require("../src/functions/todoComplete");
+const { updateStatus } = require("../src/functions/updateStatus");
 const args = process.argv;
 const commands = ["new", "get", "complete", "help"];
-console.log(__dirname);
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
@@ -33,8 +32,8 @@ const usage = function () {
             commands can be:
 
             new:        used to create a new todo
-            get:        used to retrive your todos
-            complete:   used to mark todo as complete
+            list:        used to retrive your todos
+            completed:   used to mark todo as complete
             help:       used to print the usage guide
 
     `;
@@ -62,10 +61,10 @@ if (args.length > 3) {
       case "help":
         usage();
         break;
-      case "get":
+      case "list":
         getTodo.getTodo();
         break;
-      case "complete":
+      case "completed":
         updateStatus();
         break;
       default:

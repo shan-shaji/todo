@@ -6,6 +6,8 @@ const { errorLog, successMsg } = require("../utils/messages");
 const prompt = require("../prompt");
 const getTodo = require("./getTodo");
 const chalk = require("chalk");
+const logSymbol = require("log-symbols");
+
 
 module.exports = {
   updateStatus: () => {
@@ -24,7 +26,8 @@ module.exports = {
         todos.forEach((todo) => {
           db.set(`todos[${option - 1}].complete`, true).write();
         });
-        successMsg("successfully updated");
+        successMsg(`${logSymbol.success} successfully updated!`);
+
       }
     });
   },
