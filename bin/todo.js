@@ -6,7 +6,7 @@ const FileSync = require("lowdb/adapters/FileSync");
 const getTodo = require("../src/functions/getTodo");
 const { updateStatus } = require("../src/functions/updateStatus");
 const args = process.argv;
-const commands = ["new", "get", "complete", "help"];
+const commands = ["new", "list", "completed", "help"];
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
