@@ -3,6 +3,7 @@ const utils = require("../src/utils");
 const low = require("lowdb");
 const nt = require("../src/newTodo");
 const FileSync = require("lowdb/adapters/FileSync");
+const getTodo = require("../src/getTodo");
 const args = process.argv;
 const commands = ["new", "get", "complete", "help"];
 
@@ -61,6 +62,7 @@ if (args.length > 3) {
         usage();
         break;
       case "get":
+        getTodo();
         break;
       case "complete":
         break;
