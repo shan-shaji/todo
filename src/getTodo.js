@@ -11,7 +11,7 @@ module.exports = {
         let index = 1;
        const todos =  db.get("todos").value()
        todos.forEach(todo => {
-           console.log(`${index++}. ${todo}`);
+           console.log(`${index++}. ${todo.title} status == ${todo.complete}`);
        });
     }
 }

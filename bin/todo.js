@@ -62,7 +62,7 @@ if (args.length > 3) {
         usage();
         break;
       case "get":
-        getTodo();
+        getTodo.getTodo();
         break;
       case "complete":
         break;
