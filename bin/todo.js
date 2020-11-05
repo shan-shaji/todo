@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-const utils = require("../src/utils");
+const utils = require("../src/utils/messages");
 const low = require("lowdb");
-const nt = require("../src/newTodo");
+const nt = require("../src/functions/newTodo");
 const FileSync = require("lowdb/adapters/FileSync");
-const getTodo = require("../src/getTodo");
+const getTodo = require("../src/functions/getTodo");
+const { updateStatus } = require("../src/functions/todoComplete");
 const args = process.argv;
 const commands = ["new", "get", "complete", "help"];
-
+console.log(__dirname);
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
@@ -65,6 +66,7 @@ if (args.length > 3) {
         getTodo.getTodo();
         break;
       case "complete":
+        updateStatus();
         break;
       default:
         errorLog("invalid command");

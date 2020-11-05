@@ -9,4 +9,9 @@ module.exports = {
     const eMsg = chalk.blue(message);
     console.log(eMsg);
   },
+  successMsg: (message) =>{
+    const eMsg = chalk.green(message);
+    console.log(eMsg);
+
+  }
 };

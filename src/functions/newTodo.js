@@ -2,9 +2,9 @@ const FileSync = require("lowdb/adapters/FileSync");
 const low = require("lowdb");
 const adapter = new FileSync("db.json");
 const db = low(adapter);
-const prompt = require("./prompt");
+const prompt = require("../prompt");
 const chalk = require("chalk");
-const { errorLog } = require("./utils");
+const { errorLog } = require("../utils/messages");
 
 module.exports = {
   newTodo: () => {

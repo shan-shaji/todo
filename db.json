@@ -2,11 +2,11 @@
   "todos": [
     {
       "title": "complete cart page",
-      "complete": false
+      "complete": true
     },
     {
       "title": "complete todo",
-      "complete": false
+      "complete": true
     },
     {
       "title": "hello for you",
